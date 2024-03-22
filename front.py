@@ -10,12 +10,14 @@ ORDER_SERVER_URL = "http://order-server:5002"
 @app.route('/search', methods=['GET'])
 def search():
     topic = request.args.get('topic')
+    print("hi i am the topic",topic)
     if topic:
         topic = unquote(topic)  # Decode URL-encoded parameter
     else:
         # Handle case when 'topic' parameter is not provided
         return jsonify({'error': 'Topic parameter is required'}), 400
     response = requests.get(f"{CATALOG_SERVER_URL}/query?topic={topic}")
+    print(response)
     return response.json(), response.status_code
 
 @app.route('/info/<int:item_number>', methods=['GET'])

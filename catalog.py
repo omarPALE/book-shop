@@ -39,6 +39,7 @@ def query_by_subject():
     cursor.execute('SELECT * FROM catalog WHERE topic = ?', (topic,))
     books = cursor.fetchall()
     conn.close()
+    formatted_books = [{'id': row[0], 'title': row[1]} for row in books]
     return jsonify(books), 200
 
 @app.route('/query/<int:item_number>', methods=['GET'])

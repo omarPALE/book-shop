@@ -40,7 +40,7 @@ def query_by_subject():
     books = cursor.fetchall()
     conn.close()
     formatted_books = [{'id': row[0], 'title': row[1]} for row in books]
-    return jsonify(books), 200
+    return jsonify(formatted_books), 200
 
 @app.route('/query/<int:item_number>', methods=['GET'])
 def query_by_item(item_number):
@@ -50,6 +50,7 @@ def query_by_item(item_number):
     book = cursor.fetchone()
     conn.close()
     if book:
+        
         return jsonify(book), 200
     else:
         return jsonify({'error': 'Book not found'}), 404

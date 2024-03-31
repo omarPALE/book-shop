@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  front:
+    build: ./front  # Assuming front.py is in a directory named 'front'
+    ports:
+      - "8000:8000"  # Expose port 5000 for front service
+    depends_on:
+      - catalog
+      - order
+
+  catalog:
+    build: ./catalog  # Assuming catalog.py is in a directory named 'catalog'
+    ports:
+      - "8001:8001"  # Expose port 5001 for catalog service
+    depends_on:
+      - order
+
+  order:
+    build: ./order  # Assuming order.py is in a directory named 'order'
+    ports:
+      - "8002:8002"  # Expose port 5002 for order service

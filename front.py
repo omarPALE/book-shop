@@ -14,17 +14,17 @@ ORDER_SERVER_PORT = 8002
 def search(topic):
     topic = unquote(topic)
     response = requests.get(f"http://{CATALOG_SERVER_IP}:{CATALOG_SERVER_PORT}/query?topic={topic}")
-    return response.json(), response.status_code
+    return jsonify(response.json()), response.status_code
 
 @app.route('/info/<int:item_number>', methods=['GET'])
 def info(item_number):
     response = requests.get(f"http://{CATALOG_SERVER_IP}:{CATALOG_SERVER_PORT}/query/{item_number}")
-    return response.json(), response.status_code
+    return jsonify(response.json()), response.status_code
 
 @app.route('/purchase/<int:item_number>', methods=['POST'])
 def purchase(item_number):
     response = requests.post(f"http://{ORDER_SERVER_IP}:{ORDER_SERVER_PORT}/purchase/{item_number}")
-    return response.json(), response.status_code
+    return jsonify(response.json()), response.status_code
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

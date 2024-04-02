@@ -5,6 +5,7 @@ from urllib.parse import unquote
 
 app = Flask(__name__)
 
+
 CATALOG_SERVER_IP = "catalog"  # Replace with the actual IP address
 CATALOG_SERVER_PORT = 8001
 ORDER_SERVER_IP = "order"  # Replace with the actual IP address
